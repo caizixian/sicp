@@ -1,0 +1,3 @@
+infinite loop
+
+applicative-order -> no lazy evaluation when using new-if

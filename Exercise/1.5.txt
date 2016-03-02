@@ -1,0 +1,2 @@
+normal-order: 0
+applicative-order: infinite loop
