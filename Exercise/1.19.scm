@@ -1,0 +1,37 @@
+;Tpq twice->TPQ P=p^2+q^2 Q=2pq+q^2
+
+(define (square n)
+  (* n n))
+;Value: square
+
+(define (fib n)
+  (fib-iter 1 0 0 1 n))
+;Value: fib
+
+(define (even? n)
+  (= (remainder n 2) 0))
+;Value: even?
+
+(define (fib-iter a b p q count)
+  (cond ((= count 0) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (square p) (square q))
+                   (+ (* 2 p q) (square q))
+                   (/ count 2)))
+        (else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
+;Value: fib-iter
+
+(fib 3)
+;Value: 2
+
+(fib 5)
+;Value: 5
+
+(fib 6)
+;Value: 8
