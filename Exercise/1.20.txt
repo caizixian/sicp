@@ -1,0 +1,3 @@
+Applicative-order evaluation: 4
+
+Normal-order evaluation: 18
