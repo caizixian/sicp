@@ -1,3 +1,5 @@
+# xy%m = (x%m)(y%m)%m
+
 def remainder(a,b):
     print("{}%{}".format(a,b))
     return a%b
