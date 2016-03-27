@@ -1,0 +1,1 @@
+Divide a interval A by itself. The center of the result is approximately 1 not 1.

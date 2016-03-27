@@ -1,0 +1,7 @@
+https://en.wikipedia.org/wiki/Interval_arithmetic
+
+In general, it can be shown that the exact range of values can be achieved, if each variable appears only once and if f is continuous inside the box. However, not every function can be rewritten this way.
+
+The dependency of the problem causing over-estimation of the value range can go as far as covering a large range, preventing more meaningful conclusions.
+
+http://fab.cba.mit.edu/classes/S62.12/docs/Hickey_interval.pdf
