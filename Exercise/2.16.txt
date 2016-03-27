@@ -5,3 +5,5 @@ In general, it can be shown that the exact range of values can be achieved, if e
 The dependency of the problem causing over-estimation of the value range can go as far as covering a large range, preventing more meaningful conclusions.
 
 http://fab.cba.mit.edu/classes/S62.12/docs/Hickey_interval.pdf
+
+Propagation of uncertainty https://en.wikipedia.org/wiki/Propagation_of_uncertainty
