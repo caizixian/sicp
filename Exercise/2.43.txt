@@ -1,0 +1,1 @@
+(queen-cols k) has been repeatedly called, which is a time-consuming procedure.
