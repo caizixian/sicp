@@ -35,36 +35,45 @@
       (cadddr tree)))
 ;Value: weight
 
-(define (decode bits tree)
-  (define (decode-1 bits current-branch)
-    (if (null? bits)
-        '()
-        (let ((next-branch
-               (choose-branch (car bits) current-branch)))
-          (if (leaf? next-branch)
-              (cons (symbol-leaf next-branch)
-                    (decode-1 (cdr bits) tree))
-              (decode-1 (cdr bits) next-branch)))))
-  (decode-1 bits tree))
-;Value: decode
-
-(define (choose-branch bit branch)
-  (cond ((= bit 0) (left-branch branch))
-	((= bit 1) (right-branch branch))
-	(else (error "bad bit: CHOOSE-BRANCH" bit))))
-;Value: choose-branch
-
 (define sample-tree
   (make-code-tree (make-leaf 'A 4)
                   (make-code-tree
                    (make-leaf 'B 2)
                    (make-code-tree
                     (make-leaf 'D 1)
-                    (make-leaf 'C 1)))))
+		    (make-leaf 'C 1)))))
 ;Value: sample-tree
 
-(define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
-;Value: sample-message
+(define (encode message tree)
+  (if (null? message)
+      '()
+      (append (encode-symbol (car message) tree)
+              (encode (cdr message) tree))))
+;Value: encode
 
-(decode sample-message sample-tree)
-;Value 14: (a d a b b c a)
+(define (encode-symbol symbol tree)
+  (define (element-of-set? x set) 
+    (cond ((null? set) false) 
+	  ((equal? x (car set)) true) 
+	  (else (element-of-set? x (cdr set)))))
+ 
+  (define left?
+    (element-of-set? symbol (symbols (left-branch tree))))
+
+  (define right?
+    (element-of-set? symbol (symbols (right-branch tree))))
+  
+  (cond (left? (if (leaf? (left-branch tree))
+		    (cons '0 '())
+		    (cons '0 (encode-symbol symbol (left-branch tree)))))
+	(right? (if (leaf? (right-branch tree))
+                    (cons '1 '())
+                    (cons '1 (encode-symbol symbol (right-branch tree)))))
+	(else #f)))
+;Value: encode-symbol
+
+(define msg '(a d a b b c a))
+;Value: msg
+
+(encode msg sample-tree)
+;Value 18: (0 1 1 0 0 1 0 1 0 1 1 1 0)
