@@ -1,0 +1,7 @@
+Explicit dispatch: not-flexible
+
+Message-passing style: In order to add new types, a make-* procedure must be written. In order to add new operations, new dispatching rules must be written.
+
+Data-directed style: In order to add new types or new operations, corresponding procedures should be added to the table of operations.
+
+Both Message-passing style and Data-directed style are appropriate.
